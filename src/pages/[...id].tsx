@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { GetServerSidePropsContext } from "next";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { useRouter } from "next/router";
 import { getLevelStar } from "@/components/InterviewItem";
 import { marked } from "marked";
@@ -7,7 +7,6 @@ import clsx from "clsx";
 import dynamic from "next/dynamic";
 import { Opts } from "@/types";
 import NotionServer from "@/lib/NotionServer";
-import { InferGetServerSidePropsType } from "next";
 
 const HighlightCode = dynamic(() => import("@/components/HighlightCode"), {
   ssr: false,
@@ -32,6 +31,9 @@ export default function InterviewDetail({
 
   return (
     <>
+      <Head>
+        <title>{data.title}</title>
+      </Head>
       <article className="container max-w-5xl p-5 mx-auto">
         <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-200 md:text-3xl ">
           {data.title}

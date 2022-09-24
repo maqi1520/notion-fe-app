@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import { GetServerSidePropsContext } from "next";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import InterviewItem from "@/components/InterviewItem";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import clsx from "clsx";
-import { InferGetServerSidePropsType } from "next";
 import NotionServer from "@/lib/NotionServer";
+import Head from "next/head";
 
 export default function Interview({
   data,
@@ -37,6 +37,9 @@ export default function Interview({
 
   return (
     <section className="text-neutral-600 dark:text-slate-200 body-font overflow-hidden">
+      <Head>
+        <title>前端面试题库</title>
+      </Head>
       <div className="container max-w-5xl px-5 py-16 mx-auto">
         <div className="relative">
           <span className="sr-only">Search</span>
@@ -131,6 +134,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       tags,
       has_more,
       q,
-    }, // will be passed to the page component as props
+    },
   };
 }
